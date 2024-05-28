@@ -6,7 +6,8 @@ namespace Console_CRUD
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Schoolreposconsume newobj=new Schoolreposconsume();
+            newobj.Menudriven();
         }
     }
 }
