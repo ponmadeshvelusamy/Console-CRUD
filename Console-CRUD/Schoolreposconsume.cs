@@ -9,6 +9,7 @@ namespace Console_CRUD
 {
    public  class Schoolreposconsume
     {
+        SchoolDetails obj = new SchoolDetails();
         SchoolRepostery reposting;
         public  Schoolreposconsume()
         {
@@ -20,9 +21,9 @@ namespace Console_CRUD
             do
             {
                 Console.WriteLine("choose the any one option--->");
-                Console.WriteLine("1.userinput");
-                Console.WriteLine("2.UpdateData");
-                Console.WriteLine("3.ShowAllData");
+                Console.WriteLine("1.Schoolsignup");
+                Console.WriteLine("2.ShowAllData");
+                Console.WriteLine("3.UserEdit");
                 Console.WriteLine("4.Delete");
                 Console.WriteLine("5.Exit");
 
@@ -32,13 +33,13 @@ namespace Console_CRUD
                 switch (option)
                 {
                     case 1:
-                        userinput();
+                        Schoolsignup();
                         break;
                     case 2:
-                        UpdateData();
+                        ShowAllData();
                         break;
                     case 3:
-                        ShowAllData();
+                        UserEdit();
                         break;
                     case 4:
                         Delete();
@@ -47,35 +48,61 @@ namespace Console_CRUD
             }
             while (option != 5);
         }
-            public void userinput()
+            public void Schoolsignup()
             {
-                SchoolDetails repost = new SchoolDetails();
                 Console.WriteLine("Enter the SchoolName");
-                repost.SchoolName = Convert.ToString(Console.ReadLine());
+                obj.SchoolName = Convert.ToString(Console.ReadLine());
                 Console.WriteLine("Enter the ContactNO");
-                repost.ContactNo = Convert.ToInt64(Console.ReadLine());
+                obj.ContactNo = Convert.ToInt64(Console.ReadLine());
                 Console.WriteLine("Enter the Email");
-                repost.Email = Convert.ToString(Console.ReadLine());
+                obj.Email = Convert.ToString(Console.ReadLine());
                 Console.WriteLine("Enter the Address");
-                repost.Address = Convert.ToString(Console.ReadLine());
+                obj.Address = Convert.ToString(Console.ReadLine());
                 Console.WriteLine("Enter the pincode");
-                repost.Pincode = Convert.ToInt64(Console.ReadLine());
+                obj.Pincode = Convert.ToInt64(Console.ReadLine());
 
-                reposting.SchoolLogin(repost);
-            }
-            public void UpdateData()
-            {
-
+                reposting.Schoolsignup(obj);
             }
             public void ShowAllData()
             {
-
-            }
-            public void Delete()
+            var Showall = reposting.Showall();
+            if (Showall == null || Showall.Count() == 0)
             {
+                Console.WriteLine("No Records Found");
+                return;
+            }
+
+            Console.WriteLine($"|{"SchoolName"}    |{"ContactNo"}    |{"Email"} |{"Address"} |{"Pincode"}");
+
+            foreach (var Datas in Showall)
+            {
+                Console.WriteLine($"|{Datas.SchoolName}       |{Datas.ContactNo}       |{Datas.Email}  |{Datas.Address} |{Datas.Pincode}");
+            }
+            return;
+
 
             }
+        public void UserEdit()
+        {
+            Console.WriteLine("Enter the SchoolID");
+            var newSchoolID = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter the your New ContactNo");
+            var NewContactNo = Convert.ToInt64(Console.ReadLine());
+            Console.WriteLine("Enter the Email");
+            var UserEmail = Console.ReadLine();
+            reposting.EditorUpdate(newSchoolID,NewContactNo, UserEmail);
+
+
+        }
+        public void Delete()
+            {
+            Console.WriteLine("Enter the SchoolID");
+            var NewSchoolID =Convert.ToInt64(Console.ReadLine());
+            reposting.DeleteDetails(NewSchoolID);
+        }
+
+   }
 
         
-    }
 }
+

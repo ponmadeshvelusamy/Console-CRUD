@@ -10,17 +10,19 @@ namespace CrudConsoleLibrary
        
         string connectionstring = "Data source=DESKTOP-CC47JG8\\SQLEXPRESS;Initial Catalog=PonmadeshVelusamy;User id=sa;password=Anaiyaan@123";
         SqlConnection objj;
+        SchoolDetails obj = new SchoolDetails();
         public SchoolRepostery()
         {
             objj = new SqlConnection(connectionstring);
 
         }
 
-        public void SchoolLogin(SchoolDetails obj)
+        public void Schoolsignup(SchoolDetails obj)
         {
             try
+            
             {
-                var insert = $"insert into SchoolDetails values('{obj.SchoolName}',{obj.ContactNo},'{obj.Email}','{obj.Address}',{obj.Pincode})";
+                var insert = ($"exec SchoolDetails  '{obj.SchoolName}',{obj.ContactNo},'{obj.Email}','{obj.Address}',{obj.Pincode}");
                 objj.Open();
                 objj.Execute(insert);
                 objj.Close();
@@ -38,7 +40,7 @@ namespace CrudConsoleLibrary
         {
             try
             {
-                var selectquery = $"select *from SchoolDetails";
+                var selectquery = $"select SchoolID,SchoolName,ContactNo,Email,Address,Pincode from SchoolDetails";
                 objj.Open();
                 var result = objj.Query<SchoolDetails>(selectquery);
                 objj.Close();
@@ -55,11 +57,11 @@ namespace CrudConsoleLibrary
                 throw;
             }
         }
-        public void EditorUpdate(int SchoolID, long ContactNo, String Email)
+        public void EditorUpdate(long SchoolID, long ContactNo, String Email)
         {
             try
             {
-                var Update = $"update EditorUpdate  set {ContactNo},'{Email}' where '{SchoolID}a";
+                var Update = $"update EditorUpdate  set {ContactNo},'{Email}' where '{SchoolID}";
                 objj.Open();
                 objj.Execute(Update);
                 objj.Close();
@@ -74,7 +76,7 @@ namespace CrudConsoleLibrary
                 throw;
             }
         }
-        public void DeleteDetails(int SchoolID)
+        public void DeleteDetails(long SchoolID)
         {
             try
             {
