@@ -22,7 +22,7 @@ namespace CrudConsoleLibrary
             try
             
             {
-                var insert = ($"exec SchoolDetails  '{obj.SchoolName}',{obj.ContactNo},'{obj.Email}','{obj.Address}',{obj.Pincode}");
+                var insert = ($"exec SchoolDetailsignup  '{obj.SchoolName}',{obj.ContactNo},'{obj.Email}','{obj.Address}',{obj.Pincode}");
                 objj.Open();
                 objj.Execute(insert);
                 objj.Close();

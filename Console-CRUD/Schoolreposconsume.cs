@@ -61,7 +61,7 @@ namespace Console_CRUD
                 Console.WriteLine("Enter the pincode");
                 obj.Pincode = Convert.ToInt64(Console.ReadLine());
 
-                reposting.Schoolsignup(obj);
+                 reposting.Schoolsignup(obj);
             }
             public void ShowAllData()
             {
