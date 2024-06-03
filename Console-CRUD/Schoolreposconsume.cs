@@ -33,7 +33,7 @@ namespace Console_CRUD
                 switch (option)
                 {
                     case 1:
-                        Schoolsignup();
+                        Signup();
                         break;
                     case 2:
                         ShowAllData();
@@ -48,7 +48,7 @@ namespace Console_CRUD
             }
             while (option != 5);
         }
-            public void Schoolsignup()
+            public void Signup()
             {
                 Console.WriteLine("Enter the SchoolName");
                 obj.SchoolName = Convert.ToString(Console.ReadLine());

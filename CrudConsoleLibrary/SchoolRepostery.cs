@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using Dapper;
+using CrudConsoleLibrary;
 
 namespace CrudConsoleLibrary
 {
    public class SchoolRepostery
     {
        
-        string connectionstring = "Data source=DESKTOP-CC47JG8\\SQLEXPRESS;Initial Catalog=PonmadeshVelusamy;User id=sa;password=Anaiyaan@123";
+        string connectionstring = "Data source=DESKTOP-CC47JG8\\SQLEXPRESS;Initial Catalog=CRUD Operation;User id=sa;password=Anaiyaan@123";
         SqlConnection objj;
-        SchoolDetails obj = new SchoolDetails();
+        //SchoolDetails obj = new SchoolDetails();
         public SchoolRepostery()
         {
             objj = new SqlConnection(connectionstring);
@@ -22,7 +23,7 @@ namespace CrudConsoleLibrary
             try
             
             {
-                var insert = ($"exec SchoolDetailsignup  '{obj.SchoolName}',{obj.ContactNo},'{obj.Email}','{obj.Address}',{obj.Pincode}");
+                var insert = ($"Exec  Schoolin'{obj.SchoolName}',{obj.ContactNo},'{obj.Email}','{obj.Address}',{obj.Pincode}");
                 objj.Open();
                 objj.Execute(insert);
                 objj.Close();
